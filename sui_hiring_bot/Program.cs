@@ -50,6 +50,11 @@ namespace sui_hiring_bot
                 String searchResult = new ZkillboardCharacterSearch().SearchForCharacter(characterName).GetAwaiter().GetResult();
                 await message.Channel.SendMessageAsync(searchResult);
             }
+            if (_client.GetChannel(_channelId) == message.Channel && message.Content.Contains("!sendmail"))
+            {
+                String resultCode = new SendMailToChar().SendMailTo("111111").GetAwaiter().GetResult();
+                await message.Channel.SendMessageAsync(resultCode);
+            }
             if (_client.GetChannel(_channelId) == message.Channel && message.Content.Contains("!test"))
             {
                 await message.Channel.SendMessageAsync("I'm working!");
